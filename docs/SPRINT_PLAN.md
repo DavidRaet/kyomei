@@ -44,13 +44,6 @@
 **Goal**: Fully functional signup/login with JWT
 
 #### Tasks:
-- [ ] **Update Prisma Schema** - Add tables for vibe check and ratings
-  ```
-  Questions to ask yourself:
-  - What fields does a "vibe_check_question" need?
-  - How do you link a user's response to a question?
-  - What does an "anime_rating" record look like?
-  ```
   
 - [ ] **Implement AuthService**
   - Install dependencies: `bcrypt`, `jsonwebtoken`, `@types/bcrypt`, `@types/jsonwebtoken`
@@ -104,6 +97,14 @@
 **Goal**: User can answer 5-7 personality questions after signup
 
 #### Tasks:
+
+- [ ] **Update Prisma Schema** - Add tables for vibe check and ratings
+  ```
+  Questions to ask yourself:
+  - What fields does a "vibe_check_question" need?
+  - How do you link a user's response to a question?
+  - What does an "anime_rating" record look like?
+  ```
 - [ ] **Run Prisma migration** for new vibe check tables
 - [ ] **Seed database** with 5-7 hardcoded vibe check questions
   - Example: "Pick a vibe: Chill Sunday vs. Intense Monday"
