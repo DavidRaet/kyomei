@@ -1,32 +1,51 @@
 import express from 'express';
 import { authService } from '../services/authService.js';
+import { signUpSchema } from '../schema/signUpSchema.js';
+import { signInSchema } from '../schema/signInSchema.js';
+const authRouter = express.Router();
 
-export const authRouter = express.Router();
-
-
+// extra notes: Zod Schema validation and creating interfaces for the User type should be considered
+// next steps: create zod schema validation
 authRouter.post('/signup', async (req, res, next) => {
-    // missing same things in login 
-    const { email, password } = req.body;
+    const validateSignUp = signUpSchema.safeParse(req.body);
 
-    const handleUserSignUp = await authService.signUp(email, password);
-    res.json({
+    if(!validateSignUp.success){
+        return res.status(400).json({
+            message: "Invalid sign up input",
+            error: validateSignUp.error.issues
+        });
+    }
+    try {
+        const data = validateSignUp.data;
+        const signedInUser = await authService.signUp(data.username, data.email, data.password);
+        return res.status(201).json({
         message: "Sign up successful!",
-        ...handleUserSignUp
+        signedInUser
     });
-    
+    } catch (err){
+        return res.status(401).json({message: "Sign up failed."});
+    } 
+
 });
 
 authRouter.post('/login', async (req, res, next) => {
     // missing schema validation. will implement later
-    const { email, password } = req.body; 
-
+    const validateLogIn = signInSchema.safeParse(req.body);
+    if(!validateLogIn.success){
+        return res.status(400).json({
+            message: "Invalid sign in input",
+            error: validateLogIn.error.issues 
+        });
+    }
     // authService will return the user after it was queried into the db
-    const handleUserLogin = await authService.login(email, password);
-    res.json({
+    try {
+        const data = validateLogIn.data;
+        const loggedInUser = await authService.login(data.email, data.password);
+        return res.status(200).json({
          message: "Login successful!",
-         ...handleUserLogin
+         loggedInUser
     });
-    
+    } catch (err){
+        return res.status(401).json({message: "Invalid login information"});
+    } 
 });
-
-
