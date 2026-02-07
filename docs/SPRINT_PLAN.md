@@ -45,17 +45,17 @@
 
 #### Tasks:
   
-- [ ] **Implement AuthService**
+- [X] **Implement AuthService**
   - Install dependencies: `bcrypt`, `jsonwebtoken`, `@types/bcrypt`, `@types/jsonwebtoken`
   - Implement `signUp()`: hash password → create user → generate JWT
   - Implement `login()`: verify password → generate JWT
   
-- [ ] **Create auth middleware** for protected routes
+- [X] **Create auth middleware** for protected routes
 
 #### Research Topics:
-- [ ] How does `bcrypt.hash()` and `bcrypt.compare()` work?
-- [ ] What should go in a JWT payload? What should NOT?
-- [ ] What's the difference between access tokens and refresh tokens?
+- [X] How does `bcrypt.hash()` and `bcrypt.compare()` work?
+- [X] What should go in a JWT payload? What should NOT?
+- [X] What's the difference between access tokens and refresh tokens?
 
 #### Checkpoint Questions (Ask Yourself):
 1. Why do we hash passwords instead of encrypting them?
