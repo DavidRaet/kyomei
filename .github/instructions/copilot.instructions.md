@@ -12,7 +12,7 @@ Keep it Simple Stupid
 Prefer simple, reliable patterns over complex ones 
 
 
-Output should follow a succinct explanation and if necessary an anime analogy that will help me understand the concept
+Output should follow a succinct explanation and if necessary a Hunter x Hunter analogy that will help me understand the concept
 
 
 
