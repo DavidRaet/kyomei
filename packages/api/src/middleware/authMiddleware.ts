@@ -32,7 +32,7 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
         const verifiedToken = jwt.verify(token, SECRET_KEY) as CustomJwtPayload;
         req.userId = verifiedToken.userId; 
     } catch (err) {
-        next(err);
+        return next(err);
     }
     next();
 }
