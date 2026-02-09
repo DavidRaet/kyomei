@@ -2,6 +2,7 @@ import sourceMapSupport from 'source-map-support';
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import { errorHandler } from './middleware/errorHandler.js';
 
 sourceMapSupport.install();
 
@@ -12,7 +13,7 @@ app.use(morgan("tiny"));
 
 app.use(express.json());
 
-
+app.use(errorHandler);
 
 
 
