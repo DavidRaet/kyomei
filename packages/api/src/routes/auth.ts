@@ -49,3 +49,5 @@ authRouter.post('/login', async (req, res, next) => {
         return res.status(401).json({message: "Invalid login information"});
     } 
 });
+
+export default authRouter;

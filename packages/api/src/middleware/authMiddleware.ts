@@ -1,7 +1,7 @@
 import type {Request, Response, NextFunction} from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import type { CustomJwtPayload } from '../types/express.js';
+import type { CustomJwtPayload } from '../utils/express.js';
 dotenv.config();
 
 const SECRET_KEY = process.env.JWT_SECRET;
@@ -32,7 +32,8 @@ export const authenticateToken = async (req: Request, res: Response, next: NextF
         const verifiedToken = jwt.verify(token, SECRET_KEY) as CustomJwtPayload;
         req.userId = verifiedToken.userId; 
     } catch (err) {
-        return next(err);
+        res.status(401).send("Invalid or expired token.");
+        return;
     }
     next();
 }
